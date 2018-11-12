@@ -5,12 +5,25 @@
 package main
 
 import (
+	"github.com/serenize/snaker"
 	"io/ioutil"
 	"strings"
 	"text/template"
 
 	"github.com/go-xorm/core"
 )
+
+type SnakeMapper struct {
+}
+
+func (m SnakeMapper) Obj2Table(str string) string {
+	return snaker.CamelToSnake(str)
+}
+
+func (m SnakeMapper) Table2Obj(str string) string {
+	return snaker.SnakeToCamel(str)
+}
+
 
 type LangTmpl struct {
 	Funcs      template.FuncMap
@@ -19,7 +32,7 @@ type LangTmpl struct {
 }
 
 var (
-	mapper    = &core.SnakeMapper{}
+	mapper    = &SnakeMapper{}
 	langTmpls = map[string]LangTmpl{
 		"go":   GoLangTmpl,
 		"c++":  CPlusTmpl,

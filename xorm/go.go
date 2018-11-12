@@ -293,7 +293,7 @@ func tag(table *core.Table, col *core.Column) string {
 		tags = append(tags, "json:\""+col.Name+"\"")
 	}
 	if len(res) > 0 {
-		tags = append(tags, "xorm:\""+strings.Join(res, " ")+"\"")
+		tags = append(tags, "xorm:\""+strings.Join(res, " ")+" "+col.Name+"\"")
 	}
 	if len(tags) > 0 {
 		return "`" + strings.Join(tags, " ") + "`"
