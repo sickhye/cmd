@@ -181,7 +181,7 @@ func runReverse(cmd *Command, args []string) {
 	if filterPat != nil && len(tables) > 0 {
 		size := 0
 		for _, t := range tables {
-			if filterPat.MatchString(t.Name) {
+			if !filterPat.MatchString(t.Name) {
 				tables[size] = t
 				size++
 			}
